@@ -1,0 +1,8 @@
+<launch>
+    <rosparam file="$(find reactor_arm)/config/controllers.yaml" command="load" />
+    <node name="tilt_controller_spawner" pkg=dynamixel_controllers" type="controller_spawner.py"
+        args="--manager=dxl_controllers"
+              --port arm_ports
+              tilt_controller"
+        output="screen" />
+</launch>

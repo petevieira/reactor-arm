@@ -1,0 +1,15 @@
+<package>
+  <description brief="reactor-arm">
+
+     reactor-arm
+
+  </description>
+  <author>pete</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/reactor-arm</url>
+  <depend package="dynamixel_controllers"/>
+
+</package>
+
+
