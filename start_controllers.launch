@@ -1,9 +1,0 @@
-<launch>
-    <!-- Start the arm joint controllers -->
-    <rosparam file="$(find reactor-arm)/arm_controllers.yaml" command="load"/>
-    <node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
-          args="--manager=dxl_manager
-                --port arm_port
-                arm_controllers"
-          output="screen"/>
-</launch>
