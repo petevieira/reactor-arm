@@ -3,20 +3,14 @@
 <launch>
     <param name="robot_description" textfile="$(find reactor_arm)/urdf/robots/reactor_description.urdf" />
 
-    <rosparam>
-      file="$(find reactor_arm)/config/arm_controllers.yaml" command="load"
-    </rosparam>
+    <rosparam file="$(find reactor_arm)/config/arm_controllers.yaml" command="load" />
 
     <node
       name="dynamixel_trajectory_controller" pkg="dynamixel_controllers" type="trajectory_controller.py"
-      args="dynamixel_controllers"
+      args="arm_controllers"
       output="screen" >
-          <rosparam>
-            file="$(find reactor_arm)/config/manager.yaml" command="load"
-          </rosparam>
+          <rosparam file="$(find reactor_arm)/config/manager.yaml" command="load" />
     </node>
 
-    <node>
-      name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"
-    </node>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
 </launch>

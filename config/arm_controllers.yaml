@@ -26,7 +26,6 @@ arm_controllers:
             max: 815
         motor_slave:
             id: 3
-            calibration_offset: -pi/2.0
 
     elbow_pitch_controller:
         controller:
@@ -38,11 +37,10 @@ arm_controllers:
         motor_master:
             id: 4
             init: 512
-            min: 200
-            max: 800
+            min: 210
+            max: 830
         motor_slave:
             id: 5
-            calibration_offset: pi/2.0
 
     wrist_pitch_controller:
         controller:
@@ -55,31 +53,31 @@ arm_controllers:
         motor:
             id: 6
             init: 512
-            min: 256
-            max: 768
+            min: 220
+            max: 820
 
     wrist_yaw_controller:
         controller:
             package: dynamixel_controllers
             module: joint_position_controller
             type: JointPositionController
-        joint_name: wrist_yaw
+        joint_name: wrist_roll
         joint_speed: 1.17
         motor:
             id: 7
             init: 512
-            min: 256
-            max: 768
+            min: 0
+            max: 1020
 
     gripper_controller:
         controller:
             package: dynamixel_controllers
             module: joint_position_controller
             type: JointPositionController
-        joint_name: gripper
+        joint_name: gripper_joint
         joint_speed: 1.17
         motor:
             id: 8
             init: 512
-            min: 0
-            max: 600
+            min: 20
+            max: 512
