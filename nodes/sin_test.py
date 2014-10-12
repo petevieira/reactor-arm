@@ -16,13 +16,13 @@ def commander():
 	rospy.init_node('commander', anonymous=True)
 	r = rospy.Rate(10)
 
-	dt = 0
+	# dt = 0
+	pub.publish(0)
+	# while not rospy.is_shutdown():
+	# 	pub.publish(math.sin(dt))
+	# 	dt += 0.05
 
-	while not rospy.is_shutdown():
-		pub.publish(math.sin(dt))
-		dt += 0.05
-
-		r.sleep()
+	# 	r.sleep()
 
 # Main
 if __name__ == '__main__':

@@ -49,7 +49,6 @@ arm_controllers:
             type: JointPositionController
         joint_name: wrist_pitch
         joint_speed: 1.17
-        reverse: true
         motor:
             id: 6
             init: 512
@@ -69,6 +68,7 @@ arm_controllers:
             min: 0
             max: 1020
 
+    # min and max angles swapped so valid angles are all positive
     gripper_controller:
         controller:
             package: dynamixel_controllers
@@ -79,5 +79,5 @@ arm_controllers:
         motor:
             id: 8
             init: 512
-            min: 20
-            max: 512
+            min: 512
+            max: 20

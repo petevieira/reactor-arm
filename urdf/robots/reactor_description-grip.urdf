@@ -149,11 +149,11 @@
     <child
       link="bicep_link" />
     <axis
-      xyz="0 1 0" />
+    xyz="0 -1 0" />
     <limit
       effort="3.0"
       velocity="6.178465545" 
-      lower="0"
+      lower="-3.141593"
       upper="3.141593" />
   </joint>
   <link
@@ -207,12 +207,12 @@
     <child
       link="forearm_link" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
     <limit
       effort="3.0"
       velocity="6.178465545" 
       lower="-3.141593"
-      upper="0" />
+      upper="3.141593" />
   </joint>
   <link
     name="wrist_1">
@@ -265,7 +265,7 @@
     <child
       link="wrist_1" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
     <limit
       effort="1.5"
       velocity="6.178465545" 
