@@ -313,7 +313,7 @@
     </collision>
   </link>
   <joint
-    name="wrist_roll"
+    name="wrist_yaw"
     type="revolute">
     <origin
       xyz="0.071 0.00175 0"
@@ -372,7 +372,7 @@
   </link>
   <joint
     name="gripper_joint"
-    type="fixed">
+    type="revolute">
     <origin
       xyz="0.04789 0 0"
       rpy="0 0 0" />
@@ -381,6 +381,11 @@
     <child
       link="gripper_link" />
     <axis
-      xyz="0 0 0" />
+      xyz="1 0 0" />
+    <limit
+      effort="1.5"
+      velocity="6.17"
+      lower="-3.14"
+      upper="3.14" />
   </joint>
 </robot>

@@ -48,7 +48,7 @@ arm_controllers:
             module: joint_position_controller
             type: JointPositionController
         joint_name: wrist_pitch
-        joint_speed: 1.17
+        joint_speed: 2.5
         motor:
             id: 6
             init: 512
@@ -60,7 +60,7 @@ arm_controllers:
             package: dynamixel_controllers
             module: joint_position_controller
             type: JointPositionController
-        joint_name: wrist_roll
+        joint_name: wrist_yaw
         joint_speed: 1.17
         motor:
             id: 7
@@ -68,8 +68,7 @@ arm_controllers:
             min: 0
             max: 1020
 
-    # min and max angles swapped so valid angles are all positive
-    gripper_controller:
+    gripper_joint_controller:
         controller:
             package: dynamixel_controllers
             module: joint_position_controller

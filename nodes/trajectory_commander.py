@@ -26,46 +26,49 @@ class RobotArm:
 
 	def move_arm(self, angles):
 		goal = FollowJointTrajectoryGoal()
-		goal.trajectory.joint_names = ["shoulder_yaw", "shoulder_pitch", "elbow_pitch", "wrist_pitch", "wrist_roll", "gripper_joint"]
+		goal.trajectory.joint_names = ["shoulder_yaw", "shoulder_pitch",
+		                               "elbow_pitch", "wrist_pitch",
+		                               "wrist_yaw", "gripper_joint"]
 		point = JointTrajectoryPoint()
 		point.positions = angles
-		# point.velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		point.velocities = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
 		# point.accelerations = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 		point.time_from_start = rospy.Time.now()
 		goal.trajectory.points.append(point)
-
-		# point2 = JointTrajectoryPoint()
-		# point2.positions = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
-		# point2.velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-		# point2.accelerations = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-		# point2.time_from_start = rospy.Duration(2.0)
-		# goal.trajectory.points.append(point2)
 
 		return goal
 
 	def get_state(self):
 		return self.traj_client.get_state()
 
+def print_usage():
+	print 'Script:  trajectory_commander.py\n'
+	print 'Usage:   rosrun reactor_arm trajectory_commander.py q1 q2 q3 q4 q5 q6'
+	print '         (where q is the desired joint angle in radians for that joint on the robot arm)\n'
+	print 'Example: rosrun reactor_arm trajectory_commander.py 0 -1 -1 0 0 0\n'
+	print 'Note:    integers and floats are both valid joint angles'
+
 # Main
 if __name__ == '__main__':
-	angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-	for i in range(1, len(sys.argv) - 1):
-		print '', i, sys.argv[i]
-		try:
-			angles[i-1] = float(sys.argv[i])
-		except ValueError, e:
-			print 'i=', i, ', arg=', sys.argv[i]
-	print 'angles: ', str(angles)
+	if len(sys.argv) is not 7:
+		print_usage()
+		exit()
 
 	try:
 		rospy.init_node("traj", anonymous=True)
 
+		angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		for i in range(1, len(sys.argv)):
+			try:
+				angles[i-1] = float(sys.argv[i])
+			except ValueError, e:
+				rospy.logerror('Value Error: i=', i, ', arg=', sys.argv[i])
+
+		rospy.loginfo('Moving arm to joint angles: ' + str(angles) + ' radians')
+
 		robot = RobotArm()
 
 		robot.start_trajectory(robot.move_arm(angles))
-
-		# while(not robot.get_state().isDone() and rospy.ok()):
-			# usleep(50000)
 
 	except rospy.ROSInterruptException:
 		print "program interrupted before completion"
